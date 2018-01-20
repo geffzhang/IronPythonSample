@@ -1,4 +1,6 @@
-﻿using System;
+﻿using IronPython.Hosting;
+using Microsoft.Scripting.Hosting;
+using System;
 using System.Collections.Generic;
 
 namespace ConsoleSample
@@ -7,7 +9,7 @@ namespace ConsoleSample
     {
         static void Main(string[] args)
         {
-            Microsoft.Scripting.Hosting.ScriptEngine pythonEngine =
+            ScriptEngine pythonEngine =
                   IronPython.Hosting.Python.CreateEngine();
             ICollection<string> searchPaths = pythonEngine.GetSearchPaths();
             // Now modify the search paths to include the directory
@@ -21,7 +23,16 @@ namespace ConsoleSample
             Microsoft.Scripting.Hosting.ScriptSource pythonScript =
                 pythonEngine.CreateScriptSourceFromFile("example.py");
             pythonScript.Execute();
-            Console.WriteLine("Hello World!");
+
+            var scope = Python.ImportModule(pythonEngine, "HelloWorldModule");
+            dynamic printHelloWorldFunction = scope.GetVariable("PrintHelloWorld");
+            printHelloWorldFunction();
+
+            dynamic printMessageFunction = scope.GetVariable("PrintMessage");
+            printMessageFunction("Goodbye!");
+
+            dynamic addFunction = scope.GetVariable("Add");
+            System.Console.Out.WriteLine("The sum of 1 and 2 is " + addFunction(1, 2));
         }
     }
 }
