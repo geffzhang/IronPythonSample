@@ -5,8 +5,8 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="DynamicLanguageRuntime" Version="1.2.0" />
-    <PackageReference Include="IronPython" Version="2.7.8-beta1" />
+    <PackageReference Include="DynamicLanguageRuntime" Version="1.2.1" />
+    <PackageReference Include="IronPython" Version="2.7.8" />
   </ItemGroup>
   <ItemGroup>
     <None Update="example.py">

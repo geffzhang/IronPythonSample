@@ -1,6 +1,5 @@
 ﻿using IronPython.Hosting;
 using Microsoft.Scripting.Hosting;
-using System;
 using System.Collections.Generic;
 
 namespace ConsoleSample
@@ -20,7 +19,7 @@ namespace ConsoleSample
             // Execute the script
             // We execute this script from Visual Studio
             // so the program will executed from bin\Debug or bin\Release
-            Microsoft.Scripting.Hosting.ScriptSource pythonScript =
+            ScriptSource pythonScript =
                 pythonEngine.CreateScriptSourceFromFile("example.py");
             pythonScript.Execute();
 
